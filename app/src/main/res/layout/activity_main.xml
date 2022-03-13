@@ -8,8 +8,8 @@
 
     <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize">
-
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/second">
 
 
     </Toolbar>
@@ -27,24 +27,35 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="56dp"
         android:layout_marginTop="200dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/corner_round_edit_text_left"
+            android:singleLine="true"
             android:text="Name" />
 
         <ImageButton
             android:id="@+id/bt_search"
             android:layout_width="46dp"
             android:layout_height="46dp"
+            android:background="@drawable/corner_round_button_right"
             android:src="@android:drawable/ic_menu_search">
 
         </ImageButton>
 
     </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="56dp"
+        android:layout_marginTop="302dp"
+        android:layout_marginBottom="56dp" />
 </RelativeLayout>
