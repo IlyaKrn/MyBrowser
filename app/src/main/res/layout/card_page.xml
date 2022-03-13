@@ -8,8 +8,6 @@
 
 
     <androidx.cardview.widget.CardView
-
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -26,7 +24,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp">
+
+                <TextView
+                    android:id="@+id/tv_card_page_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:textAlignment="gravity"
+                    android:gravity="center_vertical"
+                    android:text="svfsdf"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"/>
+
+                <ImageButton
+                    android:id="@+id/bt_card_page_close"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp" />
+
+            </LinearLayout>
+
+            <WebView
+                android:id="@+id/wv_card_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

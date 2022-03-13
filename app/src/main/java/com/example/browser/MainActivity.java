@@ -1,14 +1,18 @@
 package com.example.browser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+
+import com.example.browser.adapters.CardPageAdapter;
+import com.example.browser.adapters.OnCardPageStateClick;
+import com.example.browser.objects.Page;
 
 import java.util.ArrayList;
 
@@ -18,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton btSearch;
     private EditText etSearch;
+    private RecyclerView rvRecentPages;
+    private CardPageAdapter adapter;
+    private ArrayList<Page> recentPagesList = new ArrayList<>();
 
 
     @Override
@@ -25,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
+        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
+        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
+
+        rvRecentPages = findViewById(R.id.rv_recent_pages);
         btSearch = findViewById(R.id.bt_search);
         etSearch = findViewById(R.id.et_search);
 
@@ -36,8 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        adapter = new CardPageAdapter(recentPagesList, new OnCardPageStateClick() {
+            @Override
+            public void onStateClick(Page page) {
 
-
+            }
+        });
+        rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
+        rvRecentPages.setAdapter(adapter);
     }
 
     private String parser(String str){
