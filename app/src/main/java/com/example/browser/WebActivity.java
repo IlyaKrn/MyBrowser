@@ -2,16 +2,20 @@ package com.example.browser;
 
 import static com.example.browser.MainActivity.SEARCH_QUERY;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +39,23 @@ public class WebActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
                 tvQuery.setText(url);
             }
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error){
+                //Your code to do
+                AlertDialog.Builder builder = new AlertDialog.Builder(WebActivity.this);
+                builder.setTitle(R.string.has_not_connection_title);
+                builder.setMessage(R.string.has_not_connection_message);
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
         });
         webView.loadUrl(searchAddress);
 
@@ -47,7 +68,12 @@ public class WebActivity extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                webView.goBack();
+                if (webView.canGoBack()){
+                    webView.goBack();
+                }
+                else {
+                    finish();
+                }
             }
         });
 
