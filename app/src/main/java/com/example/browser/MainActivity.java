@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.browser.adapters.CardPageAdapter;
 import com.example.browser.adapters.OnCardPageStateClick;
@@ -32,10 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
-        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
-        recentPagesList.add(new Page("https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8"));
-
         rvRecentPages = findViewById(R.id.rv_recent_pages);
         btSearch = findViewById(R.id.bt_search);
         etSearch = findViewById(R.id.et_search);
@@ -56,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         });
         rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
         rvRecentPages.setAdapter(adapter);
+
+        Toast.makeText(this, getIntent().getData().toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     private String parser(String str){
