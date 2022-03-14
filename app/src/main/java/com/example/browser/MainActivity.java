@@ -59,18 +59,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String parser(String str){
-        String[] strings = str.split(" ");
-        String qData = "";
-        for (int i = 0; i < strings.length; i++) {
-            qData += strings[i];
-            if (!(i == strings.length-1)){
-                qData += "+";
-            }
+        String start = "";
+        for (int i = 0; i < 8; i++) {
+            start += str.charAt(i);
         }
-        String query = "https://www.google.com/search?q=" + qData + "&oq=" + qData + "&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8";
+
+        String query = "";
+
+        if (start.equals("https://")){
+            query = str;
+        }
+        else {
+            String[] strings = str.split(" ");
+            String qData = "";
+            for (int i = 0; i < strings.length; i++) {
+                qData += strings[i];
+                if (!(i == strings.length-1)){
+                    qData += "+";
+                }
+            }
+            query = "https://www.google.com/search?q=" + qData + "&oq=" + qData + "&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8";
+        }
+
+
         return query;
-      //  https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8
-
-
+        //  https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8
     }
 }
