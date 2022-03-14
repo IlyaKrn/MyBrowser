@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
         rvRecentPages.setAdapter(adapter);
 
-        Toast.makeText(this, getIntent().getData().toString(), Toast.LENGTH_SHORT).show();
 
     }
 

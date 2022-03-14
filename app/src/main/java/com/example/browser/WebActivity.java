@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,11 +34,17 @@ public class WebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         init();
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Загрузка...");
+        progressDialog.show();
+
         webView.setWebViewClient(new WebViewClient(){
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 tvQuery.setText(url);
+                progressDialog.dismiss();
             }
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -56,6 +63,18 @@ public class WebActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+
+                if (!progressDialog.isShowing()) {
+                    progressDialog.show();
+                }
+
+                return true;
+            }
+
+
         });
         webView.loadUrl(searchAddress);
 
