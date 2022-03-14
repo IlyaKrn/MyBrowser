@@ -104,7 +104,7 @@ public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageVi
                 @Override
                 public void onClick(View view) {
                     pages.remove(index);
-
+                    notifyDataSetChanged();
                 }
             });
 

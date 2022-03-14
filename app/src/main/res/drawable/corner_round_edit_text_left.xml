@@ -11,6 +11,9 @@
         android:right="8dp"
         android:left="8dp"/>
 
+    <solid
+        android:color="@color/white"/>
+
     <corners
         android:topLeftRadius="500dp"
         android:bottomLeftRadius="500dp"/>

@@ -38,7 +38,8 @@
             android:layout_weight="1"
             android:background="@drawable/corner_round_edit_text_left"
             android:singleLine="true"
-            android:text="Name" />
+            android:paddingStart="12dp"
+            android:textColor="@color/black" />
 
         <ImageButton
             android:id="@+id/bt_search"
