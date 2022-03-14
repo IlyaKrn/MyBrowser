@@ -60,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
     private String parser(String str){
         String start = "";
-        for (int i = 0; i < 8; i++) {
-            start += str.charAt(i);
+        if (str.length() >= 8) {
+            for (int i = 0; i < 8; i++) {
+                start += str.charAt(i);
+            }
         }
 
         String query = "";

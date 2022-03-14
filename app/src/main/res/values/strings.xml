@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Browser</string>
     <string name="has_not_connection_title">Нет подключения к интернету</string>
-    <string name="has_not_connection_message">Проверьте подключение к интернету</string>
+    <string name="has_not_connection_message">Произошла ошибка при загрузке страницы или отсутствует подключение к интернету</string>
     <string name="ok">Ок</string>
+    <string name="error">Ошибка</string>
 </resources>

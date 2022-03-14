@@ -44,7 +44,7 @@ public class WebActivity extends AppCompatActivity {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error){
                 //Your code to do
                 AlertDialog.Builder builder = new AlertDialog.Builder(WebActivity.this);
-                builder.setTitle(R.string.has_not_connection_title);
+                builder.setTitle(R.string.error);
                 builder.setMessage(R.string.has_not_connection_message);
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
