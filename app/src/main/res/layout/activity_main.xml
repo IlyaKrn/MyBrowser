@@ -9,7 +9,7 @@
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/second">
+        android:background="@color/default_toolbar">
 
 
     </Toolbar>

@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="@color/default_toolbar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +46,8 @@
                 <ImageButton
                     android:id="@+id/bt_card_page_close"
                     android:layout_width="36dp"
-                    android:layout_height="36dp" />
+                    android:layout_height="36dp"
+                    android:background="@drawable/corner_tiny_red_button"/>
 
             </LinearLayout>
 

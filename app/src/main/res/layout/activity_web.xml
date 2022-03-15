@@ -10,14 +10,14 @@
     <Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/default_toolbar"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"
         android:elevation="4dp"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
-        android:background="@color/second">
+        app:contentInsetStart="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
+                android:gravity="center_vertical"
                 android:singleLine="true"
-                android:textSize="18dp"
-                android:gravity="center_vertical"/>
+                android:textSize="18dp" />
 
         </LinearLayout>
 
