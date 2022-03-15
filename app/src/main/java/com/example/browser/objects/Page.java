@@ -1,5 +1,7 @@
 package com.example.browser.objects;
 
+// объект страницы
+
 public class Page {
 
     public String url;

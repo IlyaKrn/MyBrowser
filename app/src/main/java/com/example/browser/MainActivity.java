@@ -9,18 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.browser.adapters.CardPageAdapter;
-import com.example.browser.adapters.OnCardPageStateClick;
+import com.example.browser.adapters.OnCardPageStateClickListener;
 import com.example.browser.objects.Page;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // ключ для Intent
     public static final String SEARCH_QUERY = "search_query";
-
+    // разметка
     private ImageButton btSearch;
     private EditText etSearch;
     private RecyclerView rvRecentPages;
@@ -33,19 +33,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvRecentPages = findViewById(R.id.rv_recent_pages);
-        btSearch = findViewById(R.id.bt_search);
-        etSearch = findViewById(R.id.et_search);
+        // инициализация разметки
+        init();
 
+        // кнопка поиска
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, WebActivity.class);
-                intent.putExtra(SEARCH_QUERY, parser(etSearch.getText().toString()));
+                intent.putExtra(SEARCH_QUERY, getUrl(etSearch.getText().toString()));
                 startActivity(intent);
             }
         });
-        adapter = new CardPageAdapter(recentPagesList, new OnCardPageStateClick() {
+        // адаптер для предыдущих страниц
+        adapter = new CardPageAdapter(recentPagesList, new OnCardPageStateClickListener() {
             @Override
             public void onStateClick(Page page) {
 
@@ -57,7 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String parser(String str){
+    // инициализация разметки
+    private void init(){
+        rvRecentPages = findViewById(R.id.rv_recent_pages);
+        btSearch = findViewById(R.id.bt_search);
+        etSearch = findViewById(R.id.et_search);
+    }
+    // преобразлвание текста в ссылку
+    private String getUrl(String str){
         String start = "";
         if (str.length() >= 8) {
             for (int i = 0; i < 8; i++) {
@@ -65,25 +73,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        String query = "";
+        String url = "";
 
         if (start.equals("https://")){
-            query = str;
+            url = str;
         }
         else {
             String[] strings = str.split(" ");
-            String qData = "";
+            String data = "";
             for (int i = 0; i < strings.length; i++) {
-                qData += strings[i];
+                data += strings[i];
                 if (!(i == strings.length-1)){
-                    qData += "+";
+                    data += "+";
                 }
             }
-            query = "https://www.google.com/search?q=" + qData + "&oq=" + qData + "&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8";
+            url = "https://www.google.com/search?q=" + data + "&oq=" + data + "&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8";
         }
 
 
-        return query;
+        return url;
         //  https://www.google.com/search?q=aaaaa+wwww+e&oq=aaaaa+wwww+e&aqs=chrome..69i57.5015j0j15&sourceid=chrome&ie=UTF-8
     }
 }

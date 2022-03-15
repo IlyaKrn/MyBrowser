@@ -22,34 +22,40 @@ import android.widget.Toast;
 
 public class WebActivity extends AppCompatActivity {
 
+    // разметка и текущий адрес поиска
     private WebView webView;
-    private String searchAddress = "http://www.xvideos.com";
     private TextView tvQuery;
     private ImageButton btForward;
     private ImageButton btBack;
 
+    private String searchAddress = "http://www.google.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        // инициализация разметки
         init();
+        // диалог загрузки страницы
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Загрузка...");
-        progressDialog.show();
+
 
         webView.setWebViewClient(new WebViewClient(){
 
+            // после загрузки
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                tvQuery.setText(url);
+                searchAddress = url;
+                tvQuery.setText(searchAddress);
                 progressDialog.dismiss();
             }
+            // ошибка загрузки
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error){
-                //Your code to do
+                // диалог ошибки
                 AlertDialog.Builder builder = new AlertDialog.Builder(WebActivity.this);
                 builder.setTitle(R.string.error);
                 builder.setMessage(R.string.has_not_connection_message);
@@ -63,6 +69,7 @@ public class WebActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
+            // во время загрузки
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -78,6 +85,7 @@ public class WebActivity extends AppCompatActivity {
         });
         webView.loadUrl(searchAddress);
 
+        // кнгопки "вперед" и "назад" (верхние)
         btForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +111,7 @@ public class WebActivity extends AppCompatActivity {
 
     }
 
+    // инициализация разметки и начальных данных
     private void init(){
         searchAddress = getIntent().getStringExtra(SEARCH_QUERY);
         webView = findViewById(R.id.web_view);
@@ -112,6 +121,7 @@ public class WebActivity extends AppCompatActivity {
         btForward = findViewById(R.id.bt_forward);
     }
 
+    // кнопка "назад"
     @Override
     public void onBackPressed() {
         if (webView.canGoBack()){

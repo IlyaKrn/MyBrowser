@@ -2,6 +2,7 @@ package com.example.browser.adapters;
 
 import com.example.browser.objects.Page;
 
-public interface OnCardPageStateClick {
+// нажание на элемент списка страниц
+public interface OnCardPageStateClickListener {
     void onStateClick(Page page);
 }

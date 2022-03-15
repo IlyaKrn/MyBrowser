@@ -17,13 +17,15 @@ import com.example.browser.R;
 
 import java.util.ArrayList;
 
+// адаптер для списка страниц
+
 public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageViewHolder> {
 
-    private ArrayList<Page> pages; // список героев для отображения
-    private OnCardPageStateClick onCardPageStateClick; // обработчик нажатия на элемент
+    private ArrayList<Page> pages; // список
+    private OnCardPageStateClickListener onCardPageStateClick; // обработчик нажатия на элемент
 
     // конструктор
-    public CardPageAdapter(ArrayList<Page> pages, OnCardPageStateClick onCardPageStateClick) {
+    public CardPageAdapter(ArrayList<Page> pages, OnCardPageStateClickListener onCardPageStateClick) {
         this.pages = pages;
         this.onCardPageStateClick = onCardPageStateClick;
     }
@@ -62,20 +64,16 @@ public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageVi
     }
 
 
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
-
     // холдер
     public class PageViewHolder extends RecyclerView.ViewHolder {
 
 
-        private CardView cv; // CardView холдера
-        private TextView tvName; // имя героя
+        // разметка
+        private CardView cv;
+        private TextView tvName;
         private ImageButton btClose;
         private WebView wvPage;
+        // страница элемента
         private Page page;
 
         // конструктор
