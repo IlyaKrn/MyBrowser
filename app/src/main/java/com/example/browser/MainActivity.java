@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.browser.SQLiteDatabase.SQLiteDbHelper;
+import com.example.browser.SQLiteDatabase.SQLiteDbManager;
 import com.example.browser.adapters.CardPageAdapter;
 import com.example.browser.adapters.OnCardPageStateClickListener;
 import com.example.browser.objects.Page;
@@ -32,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // инициализация разметки
         init();
+
+
+        recentPagesList = new SQLiteDbManager(this).getDbSQLPageList();
+
 
         // кнопка поиска
         btSearch.setOnClickListener(new View.OnClickListener() {
@@ -46,16 +51,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // адаптер для предыдущих страниц
-        adapter = new CardPageAdapter(recentPagesList, new OnCardPageStateClickListener() {
+        adapter = new CardPageAdapter(this, recentPagesList, new OnCardPageStateClickListener() {
             @Override
             public void onStateClick(Page page) {
+                Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                intent.putExtra(SEARCH_QUERY, getUrl(page.url));
+                startActivity(intent);
+            }
 
+            @Override
+            public void onDeletePage(int index) {
+                new SQLiteDbManager(MainActivity.this).deleteNote(index);
             }
         });
         rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
         rvRecentPages.setAdapter(adapter);
-
-
     }
 
     // инициализация разметки
