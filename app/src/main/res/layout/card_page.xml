@@ -23,7 +23,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp"
             android:background="@color/default_toolbar">
@@ -36,23 +36,23 @@
                     android:id="@+id/tv_card_page_name"
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
-                    android:textAlignment="gravity"
-                    android:gravity="center_vertical"
-                    android:text="svfsdf"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="gravity"
                     android:textSize="16sp" />
 
                 <ImageButton
                     android:id="@+id/bt_card_page_close"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:visibility="gone"
-                    android:background="@drawable/corner_tiny_red_button"/>
+                    android:background="@drawable/corner_tiny_red_button"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
             </LinearLayout>
 
             <WebView
+                android:visibility="gone"
                 android:id="@+id/wv_card_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

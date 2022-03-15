@@ -6,13 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.browser.SQLiteDatabase.SQLiteDbHelper;
-import com.example.browser.SQLiteDatabase.SQLiteDbManager;
 import com.example.browser.adapters.CardPageAdapter;
 import com.example.browser.adapters.OnCardPageStateClickListener;
 import com.example.browser.objects.Page;
@@ -39,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
-        recentPagesList = new SQLiteDbManager(this).getDbSQLPageList();
-
 
         // кнопка поиска
         btSearch.setOnClickListener(new View.OnClickListener() {
@@ -48,25 +43,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, WebActivity.class);
                 intent.putExtra(SEARCH_QUERY, getUrl(etSearch.getText().toString()));
+                recentPagesList.add(new Page(getUrl(etSearch.getText().toString())));
+                adapter.notifyDataSetChanged();
                 startActivity(intent);
             }
         });
         // адаптер для предыдущих страниц
-        adapter = new CardPageAdapter(this, recentPagesList, new OnCardPageStateClickListener() {
+        adapter = new CardPageAdapter( recentPagesList, new OnCardPageStateClickListener() {
             @Override
             public void onStateClick(Page page) {
                 Intent intent = new Intent(MainActivity.this, WebActivity.class);
                 intent.putExtra(SEARCH_QUERY, getUrl(page.url));
+                recentPagesList.add(new Page(getUrl(etSearch.getText().toString())));
+                adapter.notifyDataSetChanged();
                 startActivity(intent);
             }
-
-            @Override
-            public void onDeletePage(int index) {
-                new SQLiteDbManager(MainActivity.this).deleteNote(index);
-                Log.e("xfdfg", String.valueOf(index));
-            }
         });
-        rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
+        rvRecentPages.setLayoutManager(new GridLayoutManager(this, 1));
         rvRecentPages.setAdapter(adapter);
     }
 

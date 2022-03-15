@@ -41,6 +41,7 @@ public class WebActivity extends AppCompatActivity {
         progressDialog.setMessage("Загрузка...");
 
 
+
         webView.setWebViewClient(new WebViewClient(){
 
             // после загрузки

@@ -1,8 +1,6 @@
 package com.example.browser.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.browser.SQLiteDatabase.SQLiteDbManager;
 import com.example.browser.objects.Page;
 import com.example.browser.R;
 
@@ -26,13 +23,11 @@ public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageVi
 
     private ArrayList<Page> pages; // список
     private OnCardPageStateClickListener onCardPageStateClick; // обработчик нажатия на элемент
-    private Context context;
 
     // конструктор
-    public CardPageAdapter(Context context, ArrayList<Page> pages, OnCardPageStateClickListener onCardPageStateClick) {
+    public CardPageAdapter(ArrayList<Page> pages, OnCardPageStateClickListener onCardPageStateClick) {
         this.pages = pages;
         this.onCardPageStateClick = onCardPageStateClick;
-        this.context = context;
     }
 
     // создание холдера
@@ -66,7 +61,6 @@ public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageVi
                 }
             }
         });
-        Log.d("holder", "bind");
     }
 
 
@@ -108,7 +102,6 @@ public class CardPageAdapter extends RecyclerView.Adapter<CardPageAdapter.PageVi
                 @Override
                 public void onClick(View view) {
                     pages.remove(index);
-                    onCardPageStateClick.onDeletePage(index);
                     notifyDataSetChanged();
                 }
             });

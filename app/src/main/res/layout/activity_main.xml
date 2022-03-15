@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/default_toolbar">
-
-
-    </Toolbar>
-
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -24,6 +15,7 @@
         android:src="@drawable/ic_app_icon" />
 
     <LinearLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
@@ -51,6 +43,16 @@
         </ImageButton>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_delete_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"
+        android:layout_marginHorizontal="56dp"
+        android:background="@drawable/corner_tiny_default_button"
+        android:text="Очистить истоию"
+        android:visibility="gone"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
