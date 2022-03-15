@@ -41,12 +41,13 @@
                     android:text="svfsdf"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <ImageButton
                     android:id="@+id/bt_card_page_close"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
+                    android:visibility="gone"
                     android:background="@drawable/corner_tiny_red_button"/>
 
             </LinearLayout>

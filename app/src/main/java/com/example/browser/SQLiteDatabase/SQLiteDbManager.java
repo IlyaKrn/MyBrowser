@@ -54,8 +54,7 @@ public class SQLiteDbManager {
     // удаление записи по id в бд
     public void deleteNote(int id) {
         openDb();
-        db.delete(SQLiteDbConstants.TABLE_NAME, SQLiteDbConstants._ID + " = ?",
-            new String[] { String.valueOf(id) });
+        db.delete(SQLiteDbConstants.TABLE_NAME, SQLiteDbConstants._ID + " = ?", new String[] { String.valueOf(id) });
         db.close();
     }
 

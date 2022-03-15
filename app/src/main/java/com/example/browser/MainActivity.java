@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDeletePage(int index) {
                 new SQLiteDbManager(MainActivity.this).deleteNote(index);
+                Log.e("xfdfg", String.valueOf(index));
             }
         });
         rvRecentPages.setLayoutManager(new GridLayoutManager(this, 2));
